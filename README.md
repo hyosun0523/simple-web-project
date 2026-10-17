@@ -1,1 +1,1 @@
-# snake
+# simple web projects
