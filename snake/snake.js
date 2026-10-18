@@ -7,9 +7,10 @@ ctx.fillRect(0, 0, 400, 400);
 const tyle=20;
 const col=400/tyle;
 const row=400/tyle;
-let score=0;
+let hscore=0;
+let nscore = 0;
 function count(){
-    document.getElementById("score").innerText=score;
+    document.getElementById("score").innerText=hscore;
 }
 
 let dr={x:tyle, y:0};
@@ -52,8 +53,11 @@ function move(){
     head.y+=dr.y;
     snake.unshift(head);
     if(snake[0].x===food.x&&snake[0].y===food.y){
-        score++;
+        if(nscore >= hscore){
+        hscore++;
         count();
+        }
+        nscore++;
         feed();
         
         }
@@ -106,6 +110,7 @@ function gameOver(){
         {x:60, y:200},
         {x:40, y:200}
         ];
+    nscore = 0;
     clearInterval(game);
     alert("게임오버");
 }
@@ -118,3 +123,9 @@ function gameStart(){
     game=setInterval(draw, 100)
 }
 let game
+
+document.addEventListener("keydown", function(e){
+if(e.key == "Enter"){
+gameStart();
+}
+});
